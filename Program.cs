@@ -22,12 +22,12 @@ public class KodeProduk {
 
 
 public class FanLaptop {
-    enum State { quiet, balance, performance, turbo };
+    enum State { quiet, balance, performance, turbo, exit };
 
     public static void Modefan() { 
         State state = State.quiet;
-        String[] display = { "quite", "balance", "performance", "turbo" };
-        while (state != null) {
+        String[] display = { "quite", "balance", "performance", "turbo"};
+        while (state != State.exit) {
             Console.WriteLine("fan mode berubah menjadi " + display[(int)state]);
             Console.WriteLine("masukkan mode fan: ");
 
@@ -45,7 +45,10 @@ public class FanLaptop {
                     else if (command == "turbo") { 
                         state = State.turbo;
                     }
-
+                    else if (command == "exit")
+                    {
+                        state = State.exit;
+                    }
                     break;
 
                 case State.balance:
@@ -59,6 +62,10 @@ public class FanLaptop {
                     }
                     else if (command == "turbo") {
                         state = State.turbo;
+                    }
+                    else if (command == "exit")
+                    {
+                        state = State.exit;
                     }
                     break;
 
@@ -74,6 +81,10 @@ public class FanLaptop {
                     else if (command == "turbo") {
                         state = State.turbo;
                     }
+                    else if (command == "exit")
+                    {
+                        state = State.exit;
+                    }
                     break;
 
                 case State.turbo:
@@ -85,14 +96,18 @@ public class FanLaptop {
                     {
                         state = State.balance;
                     }
-                    else if (command == "performance") {
+                    else if (command == "performance")
+                    {
                         state = State.performance;
+                    }
+                    else if (command == "exit"){
+                        state = State.exit;
                     }
                     break;
                     
             }
         }
-
+        state = State.exit;
         Console.WriteLine("keluar program");
     }   
 }
