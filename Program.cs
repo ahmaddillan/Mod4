@@ -20,12 +20,104 @@ public class KodeProduk {
     }
 }
 
+
+public class FanLaptop {
+    enum State { quiet, balance, performance, turbo };
+
+    public static void Modefan() { 
+        State state = State.quiet;
+        String[] display = { "quite", "balance", "performance", "turbo" };
+        while (state != null) {
+            Console.WriteLine("fan mode berubah menjadi " + display[(int)state]);
+            Console.WriteLine("masukkan mode fan: ");
+
+            String command = Console.ReadLine();
+            switch (state) { 
+                case State.quiet:
+                    if (command == "balance")
+                    {
+                        state = State.balance;
+                    }
+                    else if (command == "performance")
+                    {
+                        state = State.performance;
+                    }
+                    else if (command == "turbo") { 
+                        state = State.turbo;
+                    }
+
+                    break;
+
+                case State.balance:
+                    if (command == "quite")
+                    {
+                        state = State.quiet;
+                    }
+                    else if (command == "performance")
+                    {
+                        state = State.performance;
+                    }
+                    else if (command == "turbo") {
+                        state = State.turbo;
+                    }
+                    break;
+
+                case State.performance:
+                    if (command == "quite")
+                    {
+                        state = State.quiet;
+                    }
+                    else if (command == "balance")
+                    {
+                        state = State.balance;
+                    }
+                    else if (command == "turbo") {
+                        state = State.turbo;
+                    }
+                    break;
+
+                case State.turbo:
+                    if (command == "quite")
+                    {
+                        state = State.quiet;
+                    }
+                    else if (command == "balance")
+                    {
+                        state = State.balance;
+                    }
+                    else if (command == "performance") {
+                        state = State.performance;
+                    }
+                    break;
+                    
+            }
+        }
+
+        Console.WriteLine("keluar program");
+    }   
+}
+
+
 public class Program {
     public static void Main() {
-        Console.WriteLine("masukkan nama produk");
-        String penc = Console.ReadLine();
 
-        String output = KodeProduk.getKodeProduk(penc);
-        Console.WriteLine("Kode Produk: " + output);
+        Console.WriteLine("kode program: ");
+        Console.WriteLine("1. program pencarian barang");
+        Console.WriteLine("2. program fan mode");
+        Console.WriteLine("masukkan pilihan program: ");
+        String input = Console.ReadLine();
+
+        if (input == "1")
+        {
+            Console.WriteLine("masukkan nama produk");
+            String penc = Console.ReadLine();
+
+            String output = KodeProduk.getKodeProduk(penc);
+            Console.WriteLine("Kode Produk: " + output);
+        }
+        else if (input == "2")
+        {
+            FanLaptop.Modefan();
+        }
     }
 }
